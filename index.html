@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Live2d Demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="/node_modules/face-api.js/dist/face-api.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+</head>
+<body>
+  <div id="app">
+    width: <input type="text" id="twidth" value="300"><br>
+    height: <input type="text" id="theight" value="400"><br>
+    modelName: 
+    <select id="tmodelName">
+      <option value="hijiki">Hijiki</option>
+      <option value="tororo">Tororo</option>
+      <option value="miku">Miku</option>
+      <option value="shizuku">Shizuku</option>
+      <option value="kesyoban">Keshouban</option>
+      <option value="nepmaid">Nepmaid</option>
+      <option value="penchan">Penchan</option>
+      <option value="poi">Poi</option>
+      <option value="tia">Tia</option>
+      <option value="chitose">Chitose</option>
+      <option value="Epsilon2.1">Epsilon</option>
+      <option value="haru01">Haru 1</option>
+      <option value="haru02">Haru 2</option>
+    </select> <br>
+    <input type="button" value="GO!" onclick="javascript:myfunc()">
+    <div>
+      <canvas id="live2dcanvas" width="300" height="400" style="border:dashed 1px #CCC"></canvas>
+      <video onloadedmetadata="onPlay(this)" height="400" id="inputVideo" autoplay muted playsinline></video>
+    </div>
+  </div>
+  <style>
+  body{
+    background-color: #808080;
+  }
+  #live2dcanvas{
+    width: 300;
+    height: 400;
+  }
+  #inputVideo {
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+  }
+
+</style>
+<script type="text/javascript" src="device.min.js"></script>
+
+<script language="JAVASCRIPT">
+  function myfunc (){
+    var width = document.getElementById("twidth").value;
+    var height = document.getElementById("theight").value;
+    var modelName = document.getElementById("tmodelName").value;
+    var modelUrl="./assets/name/name.model.json";
+    document.getElementById("live2dcanvas").style.width = width + 'px';
+    document.getElementById("live2dcanvas").style.height = height + 'px';
+    modelUrl = modelUrl.replace(/name/g, modelName);
+    console.log(modelUrl);
+    // 传入id, 模型path, 重心， 缩放， 默认透明， hover透明度
+    loadlive2d("live2dcanvas", modelUrl);
+  }
+
+</script>
+<script type="text/javascript" src="live2d.js"></script>
+
+<script type="text/javascript" src="/face.js"></script>
+
+<style type="text/css">
+</body>
+</html>
